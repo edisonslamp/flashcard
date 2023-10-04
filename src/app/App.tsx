@@ -1,4 +1,12 @@
+import { FlashCard } from "src/shared/ui/FlashCard/FlashCard";
+import { TestComp } from "src/shared/ui/testComp/testComp";
+import "./styles/index.scss";
+
 export const App = () => {
-    console.log("app");
-    return <div> Hello, Flashcard! </div>;
+    return (
+        <div className="app">
+            <TestComp />
+            <FlashCard />
+        </div>
+    );
 };
