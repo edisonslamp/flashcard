@@ -4,5 +4,9 @@ interface FlashCardProps {
     className?: string;
 }
 export const FlashCard: FC<FlashCardProps> = () => {
-    return <div className={cls.FlashCard}>Hey! I'm flashcard!</div>;
+    return (
+        <div className={cls.FlashCard}>
+            <h2 className="term">terms</h2>
+        </div>
+    );
 };

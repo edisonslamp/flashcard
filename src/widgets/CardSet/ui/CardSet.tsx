@@ -1,8 +1,19 @@
-import { FC } from "react";
+import { FlashCard } from "src/shared/ui";
 import cls from "./CardSet.module.scss";
-interface CardSetProps {
-    className?: string;
-}
-export const CardSet: FC<CardSetProps> = ({ className }) => {
-    return <div className={classNames(cls.CardSet, {}, [className])}></div>;
+
+export const CardSet = () => {
+    return (
+        <div className={cls.CardSet}>
+            <FlashCard />
+            <FlashCard />
+            <FlashCard />
+            <FlashCard />
+            <FlashCard />
+            <FlashCard />
+            <FlashCard />
+            <FlashCard />
+            <FlashCard />
+            <FlashCard />
+        </div>
+    );
 };
