@@ -1,0 +1,29 @@
+.Button {
+    font: var(--font-m);
+    border: none;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    background-color: var(--navbar-bg-color);
+}
+
+.Button:hover {
+    cursor: pointer;
+    background-color: var(--button-hover-color);
+}
+
+.Button:active {
+    background-color: var(--button-press-color);
+}
+
+.size_s {
+    font: var(--font-s);
+}
+
+.size_m {
+    font: var(--font-m);
+}
+
+.size_l {
+    font: var(--font-l);
+    padding: 1rem 2rem;
+}
