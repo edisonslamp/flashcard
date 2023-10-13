@@ -10,11 +10,17 @@ export enum SizeButton {
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     className?: string;
-    size: SizeButton;
+    size?: SizeButton;
 }
 
 export const Button: FC<ButtonProps> = (props) => {
-    const { type, children, size, className, ...otherProps } = props;
+    const {
+        type,
+        children,
+        size = SizeButton.M,
+        className,
+        ...otherProps
+    } = props;
 
     const mods: Record<string, boolean> = {
         [cls[size]]: true,
