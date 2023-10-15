@@ -7,23 +7,21 @@ import cls from "./MainPage.module.scss";
 const cardsMock: ReactNode[] = [<FlashCard />, <FlashCard />, <FlashCard />];
 
 export const MainPage = () => {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isCardSetOpen, setIsCardSetOpen] = useState(false);
 
-    const handleSet = () => {
-        if (!isOpen) {
-            setIsOpen(true);
-        }
+    const handleClose = () => {
+        setIsCardSetOpen((prev) => !prev);
     };
 
     return (
         <div className="main-page">
-            <Modal isOpen={isOpen} />
+            <Modal isOpen={isCardSetOpen} onClose={handleClose} />
             <div className={cls.cardLayout}>
                 <div className={cls.createSetBtn}>
                     <Button
                         size={SizeButton.L}
                         type="button"
-                        onClick={handleSet}
+                        onClick={handleClose}
                     >
                         Create Set
                     </Button>
