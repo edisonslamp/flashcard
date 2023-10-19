@@ -1,10 +1,14 @@
-import { ReactNode, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Button, FlashCard, Modal, SizeButton } from "src/shared/ui";
+import {
+    Button,
+    CreateCard,
+    FlashCard,
+    Modal,
+    SizeButton,
+} from "src/shared/ui";
 import { CardSet } from "src/widgets";
 import cls from "./MainPage.module.scss";
-
-const cardsMock: ReactNode[] = [<FlashCard />, <FlashCard />, <FlashCard />];
 
 export const MainPage = () => {
     const [isCardSetOpen, setIsCardSetOpen] = useState(false);
@@ -15,7 +19,9 @@ export const MainPage = () => {
 
     return (
         <div className="main-page">
-            <Modal isOpen={isCardSetOpen} onClose={handleClose} />
+            <Modal isOpen={isCardSetOpen} onClose={handleClose}>
+                <CreateCard onClose={handleClose} />
+            </Modal>
             <div className={cls.cardLayout}>
                 <div className={cls.createSetBtn}>
                     <Button
@@ -29,7 +35,7 @@ export const MainPage = () => {
                         <Button>LINK</Button>
                     </Link>
                 </div>
-                <CardSet cards={cardsMock} />
+                <CardSet card={[<FlashCard term="test" />]} />
             </div>
         </div>
     );

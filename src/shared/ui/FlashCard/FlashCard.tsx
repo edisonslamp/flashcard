@@ -1,17 +1,14 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import cls from "./FlashCard.module.scss";
 
 interface FlashCardProps {
     className?: string;
+    term?: string;
+    definition?: string;
 }
-export const FlashCard: FC<FlashCardProps> = () => {
-    const [term, setTerm] = useState(0);
-    const onClick = () => {
-        setTerm((prev) => prev + 1);
-    };
-
+export const FlashCard: FC<FlashCardProps> = ({ term }) => {
     return (
-        <div className={cls.FlashCard} onClick={onClick}>
+        <div className={cls.FlashCard}>
             <h2 className="term">{term}</h2>
         </div>
     );

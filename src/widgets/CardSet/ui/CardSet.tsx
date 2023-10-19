@@ -2,11 +2,11 @@ import { FC, ReactNode, useState } from "react";
 import cls from "./CardSet.module.scss";
 
 interface CardSetProps {
-    cards?: ReactNode[];
+    card?: ReactNode;
 }
 
-export const CardSet: FC<CardSetProps> = ({ cards = [] }) => {
-    const [cardset, setCardset] = useState(cards);
+export const CardSet: FC<CardSetProps> = ({ card }) => {
+    const [cardset, setCardset] = useState<ReactNode[]>([]);
 
     return (
         <div className={cls.CardSet}>
