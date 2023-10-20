@@ -1,13 +1,9 @@
 import { FC, FormEvent, useState } from "react";
+import { Card } from "src/entities/Flashcard";
 import { addItem, classNames } from "src/shared/lib";
-import { Button, SizeButton } from "..";
+import { Button, SizeButton } from "src/shared/ui";
+import { v4 as uuidv4 } from "uuid";
 import cls from "./CreateCard.module.scss";
-
-export type Card = {
-    id: number;
-    term: string;
-    definition: string;
-};
 
 interface CreateCardProps {
     className?: string;
@@ -15,18 +11,13 @@ interface CreateCardProps {
     onClose?: () => void;
 }
 export const CreateCard: FC<CreateCardProps> = ({ className, onClose }) => {
-    const [cardId, setCardId] = useState<number>(0);
-    const [card, setCard] = useState<Card>();
     const [term, setTerm] = useState<string>("");
     const [definition, setDefinition] = useState<string>("");
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        const flashcard: Card = { id: cardId, term, definition };
-        setCard(flashcard);
-
-        setCardId((prev) => ++prev);
+        const flashcard: Card = { id: uuidv4(), term, definition };
         addItem("flashcardStore", flashcard);
 
         setTerm("");

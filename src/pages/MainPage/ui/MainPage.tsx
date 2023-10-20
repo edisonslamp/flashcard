@@ -1,12 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import {
-    Button,
-    CreateCard,
-    FlashCard,
-    Modal,
-    SizeButton,
-} from "src/shared/ui";
+import { CreateCard } from "src/features/CreateCard";
+import { Button, Modal, SizeButton } from "src/shared/ui";
 import { CardSet } from "src/widgets";
 import cls from "./MainPage.module.scss";
 
@@ -35,7 +30,7 @@ export const MainPage = () => {
                         <Button>LINK</Button>
                     </Link>
                 </div>
-                <CardSet card={[<FlashCard term="test" />]} />
+                <CardSet />
             </div>
         </div>
     );

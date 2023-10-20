@@ -10,7 +10,6 @@ export function initDB() {
         const db = request.result;
         db.createObjectStore("flashcardStore", {
             keyPath: "id",
-            autoIncrement: true,
         });
     };
     return db;

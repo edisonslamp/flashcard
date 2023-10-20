@@ -1,7 +1,9 @@
+import { Card } from "src/entities/Flashcard";
+
 let db: IDBDatabase;
-export const getItem = <T>(store: string, key: IDBValidKey) => {
+export const getItem = (store: string, key: IDBValidKey) => {
     const open = indexedDB.open("flashcard");
-    return new Promise<T>((resolve, reject) => {
+    return new Promise<Card[]>((resolve, reject) => {
         open.onsuccess = () => {
             let request!: IDBRequest;
             db = open.result;
