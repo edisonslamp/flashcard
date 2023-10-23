@@ -2,7 +2,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-width: 18.75rem;
+    word-break: break-all;
+    text-align: center;
+    width: 18.75rem;
     min-height: 9.375rem;
     background-color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);

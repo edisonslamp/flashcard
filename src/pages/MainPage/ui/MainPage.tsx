@@ -13,11 +13,11 @@ export const MainPage = () => {
 
     useEffect(() => {
         const getAllCards = async () => {
-            const cards = await getItem("flashcardStore", "all");
-            setCards([...cards]);
+            const card = await getItem("flashcardStore", "all");
+            setCards([...card]);
         };
         getAllCards();
-    }, [cards]);
+    }, []);
 
     const handleClose = () => {
         setIsCardSetOpen((prev) => !prev);
