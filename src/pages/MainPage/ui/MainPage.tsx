@@ -1,12 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Card } from "src/entities/Flashcard";
 import { CreateCard } from "src/features/CreateCard";
+import { getItem } from "src/shared/lib";
 import { Button, Modal, SizeButton } from "src/shared/ui";
 import { CardSet } from "src/widgets";
 import cls from "./MainPage.module.scss";
 
 export const MainPage = () => {
     const [isCardSetOpen, setIsCardSetOpen] = useState(false);
+    const [cards, setCards] = useState<Card[]>([]);
+
+    useEffect(() => {
+        const getAllCards = async () => {
+            const cards = await getItem("flashcardStore", "all");
+            setCards([...cards]);
+        };
+        getAllCards();
+    }, [cards]);
 
     const handleClose = () => {
         setIsCardSetOpen((prev) => !prev);
@@ -30,7 +41,7 @@ export const MainPage = () => {
                         <Button>LINK</Button>
                     </Link>
                 </div>
-                <CardSet />
+                <CardSet cards={cards} />
             </div>
         </div>
     );
