@@ -4,7 +4,7 @@ import cls from "./Navbar.module.scss";
 export const Navbar = () => {
     return (
         <div className={cls.Navbar}>
-            I'm Navbar
+            Flashcard
             <div>
                 <Button
                     type="submit"

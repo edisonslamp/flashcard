@@ -7,3 +7,10 @@
     align-items: center;
     justify-content: center;
 }
+
+.cardSet {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-wrap: break-word;
+}

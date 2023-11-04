@@ -2,13 +2,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    word-break: break-all;
     text-align: center;
     width: 18.75rem;
-    min-height: 9.375rem;
+    height: 9.375rem;
     background-color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 15px;
     margin: 1rem;
     padding: 1rem;
+}
+
+.FlashCard:hover {
+    transform: scale(1.03);
+    transition: 0.3s;
+}
+
+h2 {
+    word-wrap: break-word;
 }
