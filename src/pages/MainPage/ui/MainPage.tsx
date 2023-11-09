@@ -26,7 +26,7 @@ export const MainPage = () => {
                         Create Set
                     </Button>
                 </div>
-                <CardSetList fetchCards={handleClose} />
+                <CardSetList />
             </div>
         </div>
     );

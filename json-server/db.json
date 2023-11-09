@@ -1,0 +1,24 @@
+{
+  "cards": [
+    {
+      "id": 0,
+      "title": "hello",
+      "body": "привет"
+    },
+    {
+      "id": 1,
+      "title": "table",
+      "body": "стол"
+    },
+    {
+      "id": 2,
+      "title": "chair",
+      "body": "стул"
+    },
+    {
+      "id": 3,
+      "title": "cloud",
+      "body": "облако"
+    }
+  ]
+}

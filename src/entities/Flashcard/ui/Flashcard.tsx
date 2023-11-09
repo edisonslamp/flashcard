@@ -7,12 +7,24 @@ interface FlashCardProps {
     definition?: string;
     onClick?: () => void;
 }
+
+const mods: Record<string, boolean> = {
+    definition: true,
+};
+
+console.log(mods);
+
 export const FlashCard: FC<FlashCardProps> = (props) => {
-    const { term, onClick } = props;
+    const { term, onClick, definition } = props;
 
     return (
         <div className={cls.FlashCard} onClick={onClick}>
-            <h2 className="term">{term}</h2>
+            <div className={cls.term}>
+                <h2>{term}</h2>
+            </div>
+            <div className={cls.definition}>
+                <p>{definition}</p>
+            </div>
         </div>
     );
 };

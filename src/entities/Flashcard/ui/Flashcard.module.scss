@@ -1,5 +1,6 @@
 .FlashCard {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -17,6 +18,12 @@
     transition: 0.3s;
 }
 
-h2 {
+.term {
+    display: flex;
     word-wrap: break-word;
+}
+
+.definition {
+    display: flex;
+    color: grey;
 }

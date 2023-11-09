@@ -6,20 +6,18 @@ import cls from "./CardSetList.module.scss";
 
 interface CardSetListProps {
     card?: Card[];
-    fetchCards: () => void;
 }
 
-export const CardSetList: FC<CardSetListProps> = ({ fetchCards }) => {
+export const CardSetList: FC<CardSetListProps> = () => {
     const [cards, setCards] = useState<Card[]>([]);
 
-    fetchCards = useCallback(async () => {
+    const fetchCards = useCallback(async () => {
         const card = await getItem("flashcardStore", "all");
         setCards([...card]);
     }, []);
 
     useEffect(() => {
         fetchCards();
-        console.log(cards);
     }, [fetchCards]);
 
     return (
@@ -35,10 +33,7 @@ export const CardSetList: FC<CardSetListProps> = ({ fetchCards }) => {
                                     color: "black",
                                 }}
                             >
-                                <FlashCard
-                                    term={item.term}
-                                    onClick={fetchCards}
-                                />
+                                <FlashCard term={item.term} />
                             </Link>
                         </li>
                     ))}

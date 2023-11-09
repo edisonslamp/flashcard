@@ -2,7 +2,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { AboutPage } from "src/pages/AboutPage";
 import { ErrorPage } from "src/pages/ErrorPage";
 import { MainPage } from "src/pages/MainPage";
-import { CardSetList } from "src/widgets";
+import { CardList } from "src/widgets";
 
 export const AppRouter = () => {
     const router = createBrowserRouter([
@@ -19,7 +19,7 @@ export const AppRouter = () => {
         },
         {
             path: "/mySet",
-            element: <CardSetList />,
+            element: <CardList />,
             errorElement: <ErrorPage />,
         },
     ]);
