@@ -18,7 +18,7 @@ export const AppRouter = () => {
             errorElement: <ErrorPage />,
         },
         {
-            path: "/mySet",
+            path: "/sets",
             element: <CardList />,
             errorElement: <ErrorPage />,
         },

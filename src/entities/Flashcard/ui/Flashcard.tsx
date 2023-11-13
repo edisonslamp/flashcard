@@ -1,21 +1,24 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import cls from "./FlashCard.module.scss";
 
 interface FlashCardProps {
     className?: string;
+    id?: string;
     term?: string;
     definition?: string;
     onClick?: () => void;
 }
 
-const mods: Record<string, boolean> = {
-    definition: true,
-};
-
-console.log(mods);
-
 export const FlashCard: FC<FlashCardProps> = (props) => {
-    const { term, onClick, definition } = props;
+    const { term, definition, id, onClick } = props;
+
+    const [cardId, setCardId] = useState(id);
+
+    useEffect(() => {
+        if (id) {
+            setCardId(id);
+        }
+    }, [id]);
 
     return (
         <div className={cls.FlashCard} onClick={onClick}>

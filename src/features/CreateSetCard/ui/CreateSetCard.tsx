@@ -1,45 +1,43 @@
 import { FC, FormEvent, useState } from "react";
-import { Card } from "src/entities/Flashcard";
-import { addItem, classNames } from "src/shared/lib";
+import { Set } from "src/entities/Flashcard";
+import { addSet, classNames } from "src/shared/lib";
 import { Button, SizeButton } from "src/shared/ui";
 import { v4 as uuidv4 } from "uuid";
 import cls from "./CreateCard.module.scss";
 
 interface CreateCardProps {
     className?: string;
-    createCard?: () => void;
     onClose?: () => void;
 }
 export const CreateCard: FC<CreateCardProps> = ({ className, onClose }) => {
-    const [term, setTerm] = useState<string>("");
-    const [definition, setDefinition] = useState<string>("");
+    const [title, setTitle] = useState<string>("");
+    // const [body, setDefinition] = useState<string>("");
 
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        const flashcard: Card = { id: uuidv4(), term, definition };
-        addItem("flashcardStore", flashcard);
+        const setCard: Set = { id: uuidv4(), title, cards: [] };
+        addSet(setCard);
 
-        setTerm("");
-        setDefinition("");
+        setTitle("");
     };
 
     return (
         <div className={classNames(cls.CreateCard, {}, [className as string])}>
-            <form onSubmit={handleSubmit}>
-                <label id="card-form">Term</label>
+            <form onSubmit={handleSubmit} className="#myform">
+                <label id="card-form">Set</label>
                 <br />
                 <input
                     type="text"
                     id="term"
                     name="term"
                     placeholder="your term..."
-                    onChange={(e) => setTerm(e.target.value)}
-                    value={term}
+                    onChange={(e) => setTitle(e.target.value)}
+                    value={title}
                 />
                 <br />
 
-                <label htmlFor="definition">Definition</label>
+                {/* <label htmlFor="definition">Definition</label>
                 <br />
                 <textarea
                     id="definition"
@@ -47,11 +45,11 @@ export const CreateCard: FC<CreateCardProps> = ({ className, onClose }) => {
                     placeholder="your definition..."
                     onChange={(e) => setDefinition(e.target.value)}
                     value={definition}
-                />
+                /> */}
                 <br />
 
                 <Button type="submit" size={SizeButton.M} onClick={onClose}>
-                    Create card
+                    Create set
                 </Button>
             </form>
         </div>

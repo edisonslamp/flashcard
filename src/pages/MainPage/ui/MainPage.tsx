@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { CreateCard } from "src/features/CreateCard";
+import { Link } from "react-router-dom";
+import { CreateCard } from "src/features/CreateSetCard";
 import { Button, Modal, SizeButton } from "src/shared/ui";
 import { CardSetList } from "src/widgets";
 import cls from "./MainPage.module.scss";
@@ -18,13 +19,23 @@ export const MainPage = () => {
             </Modal>
             <div className={cls.cardLayout}>
                 <div className={cls.createSetBtn}>
-                    <Button
-                        size={SizeButton.L}
-                        type="button"
-                        onClick={handleClose}
-                    >
-                        Create Set
-                    </Button>
+                    <div className={cls.createBtn}>
+                        <Button
+                            size={SizeButton.L}
+                            type="button"
+                            onClick={handleClose}
+                        >
+                            Create Set
+                        </Button>
+                    </div>
+
+                    <div className={cls.backBtn}>
+                        <Link to={"/"}>
+                            <Button size={SizeButton.M} type="button">
+                                Back to sets
+                            </Button>
+                        </Link>
+                    </div>
                 </div>
                 <CardSetList />
             </div>

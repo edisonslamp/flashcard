@@ -1,24 +1,61 @@
 {
-  "cards": [
+  "sets": [
     {
       "id": 0,
-      "title": "hello",
-      "body": "привет"
+      "title": "nature",
+      "cards": [
+        {
+          "id": 0,
+          "term": "tree",
+          "definition": "дерево"
+        },
+        {
+          "id": 1,
+          "term": "apple",
+          "definition": "яблоко"
+        },
+        {
+          "id": 2,
+          "term": "bush",
+          "definition": "куст"
+        },
+        {
+          "id": 3,
+          "term": "cloud",
+          "definition": "облако"
+        }
+      ]
     },
     {
       "id": 1,
-      "title": "table",
-      "body": "стол"
+      "title": "animals",
+      "cards": [
+        {
+          "id": 0,
+          "term": "elephant",
+          "definition": "слое"
+        },
+        {
+          "id": 1,
+          "term": "hedgehog",
+          "definition": "еж"
+        },
+        {
+          "id": 2,
+          "term": "wolf",
+          "definition": "волк"
+        },
+        {
+          "id": 3,
+          "term": "cat",
+          "definition": "кошка"
+        }
+      ]
     },
     {
-      "id": 2,
-      "title": "chair",
-      "body": "стул"
-    },
-    {
-      "id": 3,
-      "title": "cloud",
-      "body": "облако"
+      "id": "56d23a02-5f99-45b2-9be6-ad070bc874e4",
+      "title": "HI",
+      "cards": []
     }
   ]
 }

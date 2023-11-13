@@ -1,85 +1,40 @@
-import { Card } from "src/entities/Flashcard";
+import axios from "axios";
+import type { Set } from "src/entities/Flashcard";
 
-let db: IDBDatabase;
-export const getItem = (store: string, key: IDBValidKey) => {
-    const open = indexedDB.open("flashcard");
-    return new Promise<Card[]>((resolve, reject) => {
-        open.onsuccess = () => {
-            let request!: IDBRequest;
-            db = open.result;
-            if ([...db.objectStoreNames].find((name) => name === store)) {
-                const transaction = db.transaction(store);
-                const objectStore = transaction.objectStore(store);
-                if (key === "all") request = objectStore.getAll();
-                else request = objectStore.get(key);
-                request.onerror = () => reject(request.error);
-                request.onsuccess = () => resolve(request.result);
-                transaction.oncomplete = () => db.close();
-            } else {
-                // indexedDB.deleteDatabase("flashcard");
-                console.log(new Error("Wrong store name"));
-            }
-        };
-    });
+export const getSet = async () => {
+    try {
+        const { data } = await axios.get<Set[]>("http://localhost:3004/sets");
+
+        return data;
+    } catch (err) {
+        console.log(err);
+    }
 };
-export const addItem = (store: string, payload: object) => {
-    const open = indexedDB.open("flashcard");
-    open.onsuccess = () => {
-        db = open.result;
-        if ([...db.objectStoreNames].find((name) => name === store)) {
-            const transaction = db.transaction(store, "readwrite");
-            const objectStore = transaction.objectStore(store);
-            // const serialized = JSON.parse(JSON.stringify(payload));
-            const request = objectStore.add(payload);
-            request.onerror = () => console.error(request.error);
-            transaction.oncomplete = () => db.close();
-        } else {
-            console.log(new Error("Wrong store name"));
-        }
-    };
+
+export const getSetCards = async (id: string) => {
+    try {
+        const { data } = await axios.get<Set>(
+            `http://localhost:3004/sets/${id}`,
+        );
+        return data;
+    } catch (err) {
+        console.log(err);
+    }
 };
-export const editItem = <T>(
-    store: string,
-    key: IDBValidKey,
-    payload: object,
-) => {
-    const open = indexedDB.open("flashcard");
-    return new Promise<T>((resolve, reject) => {
-        open.onsuccess = () => {
-            let request: IDBRequest;
-            db = open.result;
-            if ([...db.objectStoreNames].find((name) => name === store)) {
-                const transaction = db.transaction(store, "readwrite");
-                const objectStore = transaction.objectStore(store);
-                if (key === "all") request = objectStore.getAll();
-                else request = objectStore.get(key);
-                request.onerror = () => reject(request.error);
-                request.onsuccess = () => {
-                    const serialized = JSON.parse(JSON.stringify(payload));
-                    const updateRequest = objectStore.put(serialized);
-                    updateRequest.onsuccess = () => resolve(request.result);
-                };
-                transaction.oncomplete = () => db.close();
-            } else {
-                console.log(new Error("Wrong store name"));
-            }
-        };
-    });
-};
-export const removeItem = (store: string, key: IDBValidKey) => {
-    const open = indexedDB.open("flashcard");
-    open.onsuccess = () => {
-        let request: IDBRequest;
-        db = open.result;
-        if ([...db.objectStoreNames].find((name) => name === store)) {
-            const transaction = db.transaction(store, "readwrite");
-            const objectStore = transaction.objectStore(store);
-            if (key === "all") request = objectStore.clear();
-            else request = objectStore.delete(key);
-            request.onerror = () => console.error(request.error);
-            transaction.oncomplete = () => db.close();
-        } else {
-            console.log(new Error("Wrong store name"));
-        }
-    };
+
+export const addSet = async (set: Set) => {
+    try {
+        const response = await axios.post<Set>(
+            "http://localhost:3004/sets",
+            set,
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            },
+        );
+        return response;
+    } catch (err) {
+        console.log(err);
+    }
 };

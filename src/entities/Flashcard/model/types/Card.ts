@@ -3,3 +3,9 @@ export type Card = {
     term: string;
     definition: string;
 };
+
+export type Set = {
+    id: string;
+    title: string;
+    cards: Card[];
+};
