@@ -1,10 +1,12 @@
 import { FC, useEffect, useState } from "react";
+import { Card } from "../model/types/Card";
 import cls from "./FlashCard.module.scss";
 
 interface FlashCardProps {
     className?: string;
     id?: string;
     term?: string;
+    cards?: Card[];
     definition?: string;
     onClick?: () => void;
 }

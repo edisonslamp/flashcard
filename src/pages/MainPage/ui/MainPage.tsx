@@ -1,44 +1,25 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { CreateCard } from "src/features/CreateSetCard";
-import { Button, Modal, SizeButton } from "src/shared/ui";
-import { CardSetList } from "src/widgets";
-import cls from "./MainPage.module.scss";
+import { Card } from "src/entities/Flashcard";
+import { getSetCards } from "src/shared/lib";
+import { CardSet } from "src/widgets/CardSet";
+import { Cards } from "src/widgets/Cards";
 
 export const MainPage = () => {
-    const [isCardSetOpen, setIsCardSetOpen] = useState(false);
+    const [cardArr, setCards] = useState<Card[]>([]);
+    const [activateIndex, setActivateIndex] = useState(0);
 
-    const handleClose = () => {
-        setIsCardSetOpen((prev) => !prev);
+    const onClick = async (id: string) => {
+        const cards = await getSetCards(id);
+        if (cards) setCards(cards.cards);
+        setActivateIndex(1);
     };
+
+    console.log(cardArr);
 
     return (
         <div className="main-page">
-            <Modal isOpen={isCardSetOpen} onClose={handleClose}>
-                <CreateCard onClose={handleClose} />
-            </Modal>
-            <div className={cls.cardLayout}>
-                <div className={cls.createSetBtn}>
-                    <div className={cls.createBtn}>
-                        <Button
-                            size={SizeButton.L}
-                            type="button"
-                            onClick={handleClose}
-                        >
-                            Create Set
-                        </Button>
-                    </div>
-
-                    <div className={cls.backBtn}>
-                        <Link to={"/"}>
-                            <Button size={SizeButton.M} type="button">
-                                Back to sets
-                            </Button>
-                        </Link>
-                    </div>
-                </div>
-                <CardSetList />
-            </div>
+            <CardSet onClick={onClick} activateIndex={activateIndex} />
+            <Cards cards={cardArr} activateIndex={activateIndex} />
         </div>
     );
 };

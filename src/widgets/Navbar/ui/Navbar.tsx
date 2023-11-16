@@ -1,10 +1,13 @@
+import { Link } from "react-router-dom";
 import { Button, SizeButton } from "src/shared/ui";
 import cls from "./Navbar.module.scss";
 
 export const Navbar = () => {
     return (
         <div className={cls.Navbar}>
-            <h3>Flashcard</h3>
+            <Link to={"/"} style={{ textDecoration: "none", color: "black" }}>
+                <h3>Flashcard</h3>
+            </Link>
 
             <div>
                 <Button

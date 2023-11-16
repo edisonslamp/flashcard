@@ -1,49 +1,37 @@
-import { useEffect, useState } from "react";
+import { FC } from "react";
 import { Card, FlashCard, Set } from "src/entities/Flashcard";
-import { getSet, getSetCards } from "src/shared/lib";
 import cls from "./CardSetList.module.scss";
 
-export const CardSetList = () => {
-    const [cardDesk, setCardDesk] = useState<Set[]>([]);
-    const [isClicked, setIsClicked] = useState<boolean>(false);
-    const [single, setSingle] = useState<Card[]>([]);
+interface CardSetListProps {
+    cardSet?: Set[];
+    cards?: Card[];
+    onClick?: (id: string) => void;
+}
 
-    useEffect(() => {
-        const fetchSet = async () => {
-            const setData = await getSet();
-            if (setData) {
-                setCardDesk(setData);
-            }
-        };
-        fetchSet();
-    }, []);
-
-    const getCards = async (id: string) => {
-        const set = await getSetCards(id);
-        if (set) {
-            setSingle(set.cards);
-        }
-        setIsClicked((prev) => !prev);
-    };
-
-    console.log(single);
-    if (isClicked) {
+export const CardSetList: FC<CardSetListProps> = ({
+    cardSet,
+    onClick,
+    cards,
+}) => {
+    if (cards?.[0]) {
+        console.log("CARD SECTION");
         return (
             <div className={cls.cardSetList}>
                 <ul>
-                    {single.map((item, index) => (
+                    {cards?.map((item, index) => (
                         <li key={index}>
                             {/* <Link
-                                    to={`/`}
-                                    style={{
-                                        textDecoration: "none",
-                                        color: "black",
-                                    }}
-                                > */}
+                                to={`/sets`}
+                                style={{
+                                    textDecoration: "none",
+                                    color: "black",
+                                }}
+                            > */}
                             <FlashCard
                                 term={item.term}
-                                definition={item.definition}
                                 id={item.id}
+                                definition={item.definition}
+                                // onClick={() => onClick?.(item.id)}
                             />
                             {/* </Link> */}
                         </li>
@@ -52,15 +40,15 @@ export const CardSetList = () => {
             </div>
         );
     }
-
+    console.log("SETS SECTION");
     return (
         <div className={cls.cardSetList}>
-            {cardDesk[0] ? (
+            {cardSet?.[0] ? (
                 <ul>
-                    {cardDesk.map((item, index) => (
+                    {cardSet?.map((item, index) => (
                         <li key={index}>
                             {/* <Link
-                                to={`/`}
+                                to={`/sets`}
                                 style={{
                                     textDecoration: "none",
                                     color: "black",
@@ -69,7 +57,7 @@ export const CardSetList = () => {
                             <FlashCard
                                 term={item.title}
                                 id={item.id}
-                                onClick={() => getCards(item.id)}
+                                onClick={() => onClick?.(item.id)}
                             />
                             {/* </Link> */}
                         </li>
