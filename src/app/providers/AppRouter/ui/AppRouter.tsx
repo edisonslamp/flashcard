@@ -3,26 +3,24 @@ import { Route, Routes } from "react-router-dom";
 import { AboutPage } from "src/pages/AboutPage";
 import { ErrorPage } from "src/pages/ErrorPage";
 import { MainPage } from "src/pages/MainPage";
-
-// import { CardList } from "src/widgets";
+import { Cards } from "src/widgets/Cards";
 
 const AppRouter = () => {
     const router = [
-        {
-            path: "/",
-            element: <MainPage />,
-            errorElement: <ErrorPage />,
-        },
-
         {
             path: "/about",
             element: <AboutPage />,
             errorElement: <ErrorPage />,
         },
         {
-            path: "/sets",
-            // element: <CardList />,
+            path: "/sets/:id",
+            element: <Cards />,
             errorElement: <ErrorPage />,
+        },
+        {
+            path: "/",
+            element: <MainPage />,
+            errorElement: "Error",
         },
     ];
 
@@ -35,7 +33,7 @@ const AppRouter = () => {
                             key={index}
                             path={route.path}
                             element={route.element}
-                            errorElement={<ErrorPage />}
+                            errorElement={route.errorElement}
                         />
                     );
                 })}

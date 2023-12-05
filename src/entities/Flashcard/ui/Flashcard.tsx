@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import { Card } from "../model/types/Card";
 import cls from "./FlashCard.module.scss";
 
@@ -8,27 +8,25 @@ interface FlashCardProps {
     term?: string;
     cards?: Card[];
     definition?: string;
-    onClick?: () => void;
+    getCards?: () => void;
 }
 
 export const FlashCard: FC<FlashCardProps> = (props) => {
-    const { term, definition, id, onClick } = props;
+    const { term, definition } = props;
+    const [isShow, setIsShow] = useState(false);
 
-    const [cardId, setCardId] = useState(id);
-
-    useEffect(() => {
-        if (id) {
-            setCardId(id);
-        }
-    }, [id]);
+    const handleOnClick = () => {
+        setIsShow((prev) => !prev);
+        console.log(isShow);
+    };
 
     return (
-        <div className={cls.FlashCard} onClick={onClick}>
+        <div className={cls.FlashCard} onClick={handleOnClick}>
             <div className={cls.term}>
                 <h2>{term}</h2>
             </div>
             <div className={cls.definition}>
-                <p>{definition}</p>
+                {isShow && <p>{definition}</p>}
             </div>
         </div>
     );
