@@ -13,7 +13,7 @@ const AppRouter = () => {
             errorElement: <ErrorPage />,
         },
         {
-            path: "/sets/:id",
+            path: "/set/:id",
             element: <Cards />,
             errorElement: <ErrorPage />,
         },

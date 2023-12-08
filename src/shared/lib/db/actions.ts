@@ -4,10 +4,11 @@ import type { Set } from "src/entities/Flashcard";
 export const getSet = async () => {
     try {
         const { data } = await axios.get<Set[]>("http://localhost:3004/sets");
-
         return data;
     } catch (err) {
-        console.log(err);
+        if (axios.isAxiosError(err)) {
+            throw new Error(err.message);
+        }
     }
 };
 
@@ -16,9 +17,11 @@ export const getSetCards = async (id: string) => {
         const { data } = await axios.get<Set>(
             `http://localhost:3004/sets/${id}`,
         );
-        return data;
+        return data?.cards;
     } catch (err) {
-        console.log(err);
+        if (axios.isAxiosError(err)) {
+            throw new Error(err.message);
+        }
     }
 };
 
@@ -35,6 +38,8 @@ export const addSet = async (set: Set) => {
         );
         return response;
     } catch (err) {
-        console.log(err);
+        if (axios.isAxiosError(err)) {
+            throw new Error(err.message);
+        }
     }
 };

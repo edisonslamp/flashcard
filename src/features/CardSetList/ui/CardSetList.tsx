@@ -1,33 +1,31 @@
-import { FC } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Card, FlashCard, Set } from "src/entities/Flashcard";
+import { FlashCard, Set } from "src/entities/Flashcard";
+import { getSet } from "src/shared/lib";
 import cls from "./CardSetList.module.scss";
 
-interface CardSetListProps {
-    cardSet?: Set[];
-    cards?: Card[];
-    getCards?: (id: string) => void;
-}
+export const CardSetList = () => {
+    const [cardSet, setCardSet] = useState<Set[] | undefined>([]);
 
-export const CardSetList: FC<CardSetListProps> = ({ cardSet, getCards }) => {
+    useEffect(() => {
+        getSet().then(setCardSet);
+    }, []);
+
     return (
         <div className={cls.cardSetList}>
-            {cardSet?.[0] ? (
+            {cardSet ? (
                 <ul>
                     {cardSet?.map((item, index) => (
                         <li key={index}>
                             <Link
-                                to={`/sets/${item.id}`}
+                                to={`/set/${item.id}`}
                                 style={{
+                                    display: "contents",
                                     textDecoration: "none",
                                     color: "black",
                                 }}
                             >
-                                <FlashCard
-                                    term={item.title}
-                                    id={item.id}
-                                    getCards={() => getCards?.(item.id)}
-                                />
+                                <FlashCard term={item.title} id={item.id} />
                             </Link>
                         </li>
                     ))}

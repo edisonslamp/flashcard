@@ -1,33 +1,16 @@
-import { FC, useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Set } from "src/entities/Flashcard";
 import { CreateCard } from "src/features/CreateSetCard";
-import { getSet } from "src/shared/lib";
 import { Button, Modal, SizeButton } from "src/shared/ui";
 import { CardSetList } from "src/widgets";
 import cls from "./CardSet.module.scss";
 
-interface CardSetProps {
-    getCards?: (id: string) => void;
-}
-
-export const CardSet: FC<CardSetProps> = ({ getCards }) => {
+export const CardSet = () => {
     const [isCardSetOpen, setIsCardSetOpen] = useState(false);
-    const [cardSet, setCardSet] = useState<Set[]>([]);
 
     const handleClose = () => {
         setIsCardSetOpen((prev) => !prev);
     };
-
-    useEffect(() => {
-        const fetchSet = async () => {
-            const setData = await getSet();
-            if (setData) {
-                setCardSet(setData);
-            }
-        };
-        fetchSet();
-    }, []);
 
     return (
         <div className="card-set">
@@ -54,7 +37,7 @@ export const CardSet: FC<CardSetProps> = ({ getCards }) => {
                         </Link>
                     </div>
                 </div>
-                <CardSetList cardSet={cardSet} getCards={getCards} />
+                <CardSetList />
             </div>
         </div>
     );
