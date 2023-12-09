@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { classNames } from "src/shared/lib";
 import { Button, SizeButton } from "src/shared/ui";
 import { Card } from "../model/types/Card";
@@ -6,16 +6,21 @@ import cls from "./FlashCard.module.scss";
 
 interface FlashCardProps {
     className?: string;
-    id?: string;
+    id: string;
     term?: string;
     cards?: Card[];
     definition?: string;
-    getCards?: () => void;
+    onCloseCard?: (e: React.MouseEvent, id: string) => void;
 }
 
 export const FlashCard: FC<FlashCardProps> = (props) => {
-    const { term, definition } = props;
+    const { term, definition, id, onCloseCard } = props;
     const [isShow, setIsShow] = useState(false);
+    const [cardId, setCardId] = useState<string>("");
+
+    useEffect(() => {
+        setCardId(id);
+    }, [id]);
 
     const handleOnClick = () => {
         setIsShow((prev) => !prev);
@@ -24,7 +29,10 @@ export const FlashCard: FC<FlashCardProps> = (props) => {
     return (
         <div className={cls.FlashCard_container}>
             <div className={cls.FlashCard} onClick={handleOnClick}>
-                <div className={cls.closeBtn_container}>
+                <div
+                    className={cls.closeBtn_container}
+                    onClick={(e: React.MouseEvent) => onCloseCard?.(e, cardId)}
+                >
                     <Button
                         className={classNames(cls.closeBtn, {}, [])}
                         size={SizeButton.S}

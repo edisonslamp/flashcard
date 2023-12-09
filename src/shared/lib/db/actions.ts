@@ -43,3 +43,13 @@ export const addSet = async (set: Set) => {
         }
     }
 };
+
+export const deleteSet = async (id: string) => {
+    try {
+        await axios.delete<Set>(`http://localhost:3004/sets/${id}`);
+    } catch (err) {
+        if (axios.isAxiosError(err)) {
+            throw new Error(err.message);
+        }
+    }
+};

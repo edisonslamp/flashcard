@@ -1,54 +1,54 @@
 {
   "sets": [
     {
-      "id": 0,
-      "title": "nature",
-      "cards": [
-        {
-          "id": 0,
-          "term": "tree",
-          "definition": "дерево"
-        },
-        {
-          "id": 1,
-          "term": "apple",
-          "definition": "яблоко"
-        },
-        {
-          "id": 2,
-          "term": "bush",
-          "definition": "куст"
-        },
-        {
-          "id": 3,
-          "term": "cloud",
-          "definition": "облако"
-        }
-      ]
-    },
-    {
-      "id": 1,
+      "id": "1",
       "title": "animals",
       "cards": [
         {
-          "id": 0,
+          "id": "0",
           "term": "elephant",
-          "definition": "слое"
+          "definition": "слон"
         },
         {
-          "id": 1,
+          "id": "1",
           "term": "hedgehog",
           "definition": "еж"
         },
         {
-          "id": 2,
+          "id": "2",
           "term": "wolf",
           "definition": "волк"
         },
         {
-          "id": 3,
+          "id": "3",
           "term": "cat",
           "definition": "кошка"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "nature",
+      "cards": [
+        {
+          "id": "0",
+          "term": "tree",
+          "definition": "дерево"
+        },
+        {
+          "id": "1",
+          "term": "cloud",
+          "definition": "облако"
+        },
+        {
+          "id": "2",
+          "term": "grass",
+          "definition": "трава"
+        },
+        {
+          "id": "3",
+          "term": "forest",
+          "definition": "лес"
         }
       ]
     },
@@ -58,13 +58,8 @@
       "cards": []
     },
     {
-      "id": "114221db-e003-4f7b-ba27-33937e82fc24",
-      "title": "Test cardset",
-      "cards": []
-    },
-    {
-      "id": "7fdd7af4-1109-4699-993d-db3bbe9a8fe5",
-      "title": "card",
+      "id": "317e4197-748f-4caf-85b6-56d21900aa8a",
+      "title": "delete me",
       "cards": []
     }
   ]
