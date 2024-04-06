@@ -29,7 +29,7 @@ export const CardList = () => {
                     ))}
                 </ul>
             ) : (
-                <FlashCard term="Create your first cardset" />
+                <FlashCard id={""} term="Create your first cardset" />
             )}
         </div>
     );

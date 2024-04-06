@@ -1,2 +1,2 @@
-export { CardSetList } from "../features/CardSetList/ui/CardSetList";
+export { CardSetList } from "../features/CardSetList";
 export { Navbar } from "./Navbar/ui/Navbar";

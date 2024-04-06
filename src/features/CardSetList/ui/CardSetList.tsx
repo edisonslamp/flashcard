@@ -1,23 +1,18 @@
-import { useCallback, useEffect, useState } from "react";
+import { FC } from "react";
 import { Link } from "react-router-dom";
 import { FlashCard, Set } from "src/entities/Flashcard";
-import { deleteSet, getSet } from "src/shared/lib";
+import { deleteSet } from "src/shared/lib";
 import cls from "./CardSetList.module.scss";
 
-export const CardSetList = () => {
-    const [cardSet, setCardSet] = useState<Set[] | undefined>([]);
+interface CardSet {
+    cardSet?: Set[];
+}
 
-    const handleOnCloseCard = useCallback(
-        async (e: React.MouseEvent, id: string) => {
-            e.preventDefault();
-            await deleteSet(id);
-        },
-        [],
-    );
-
-    useEffect(() => {
-        getSet().then(setCardSet);
-    }, []);
+export const CardSetList: FC<CardSet> = ({ cardSet }) => {
+    const handleOnCloseCard = async (e: React.MouseEvent, id: string) => {
+        e.preventDefault();
+        await deleteSet(id);
+    };
 
     return (
         <div className={cls.cardSetList}>

@@ -4,16 +4,16 @@ import cls from "./Modal.module.scss";
 
 interface ModalProps {
     className?: string;
-    isOpen: boolean;
     children?: ReactNode;
-    onClose: () => void;
+    isOpen: boolean;
+    handleClose?: () => void;
 }
 
 export const Modal: FC<ModalProps> = ({
     className,
-    isOpen,
-    onClose,
     children,
+    isOpen,
+    handleClose,
 }) => {
     const onContentClick = (e: React.MouseEvent) => {
         e.stopPropagation();
@@ -27,7 +27,7 @@ export const Modal: FC<ModalProps> = ({
         <div className={classNames(cls.Modal, mods, [className as string])}>
             <div
                 className={classNames(cls.overlay, {}, [className as string])}
-                onClick={onClose}
+                onClick={handleClose}
             >
                 <div className={cls.content} onClick={onContentClick}>
                     {children}

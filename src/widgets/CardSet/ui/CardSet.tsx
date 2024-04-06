@@ -1,22 +1,18 @@
-import { useState } from "react";
+import { FC } from "react";
 import { Link } from "react-router-dom";
-import { CreateCard } from "src/features/CreateSetCard";
-import { Button, Modal, SizeButton } from "src/shared/ui";
+import { Set } from "src/entities/Flashcard";
+import { Button, SizeButton } from "src/shared/ui";
 import { CardSetList } from "src/widgets";
 import cls from "./CardSet.module.scss";
 
-export const CardSet = () => {
-    const [isCardSetOpen, setIsCardSetOpen] = useState(false);
+interface CardSetProps {
+    handleClose: () => void;
+    cardSet: Set[];
+}
 
-    const handleClose = () => {
-        setIsCardSetOpen((prev) => !prev);
-    };
-
+export const CardSet: FC<CardSetProps> = ({ handleClose, cardSet }) => {
     return (
         <div className="card-set">
-            <Modal isOpen={isCardSetOpen} onClose={handleClose}>
-                <CreateCard onClose={handleClose} />
-            </Modal>
             <div className={cls.cardLayout}>
                 <div className={cls.createSetBtn}>
                     <div className={cls.createBtn}>
@@ -37,7 +33,7 @@ export const CardSet = () => {
                         </Link>
                     </div>
                 </div>
-                <CardSetList />
+                <CardSetList cardSet={cardSet} />
             </div>
         </div>
     );
