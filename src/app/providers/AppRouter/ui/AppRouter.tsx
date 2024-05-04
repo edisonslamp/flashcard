@@ -20,7 +20,12 @@ const AppRouter = () => {
         {
             path: "/",
             element: <MainPage />,
-            errorElement: "Error",
+            errorElement: <ErrorPage />,
+        },
+        {
+            path: "*",
+            element: "404 NOT FOUND",
+            errorElement: <ErrorPage />,
         },
     ];
 

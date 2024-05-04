@@ -29,11 +29,11 @@ export const FlashCard: FC<FlashCardProps> = (props) => {
     return (
         <div className={cls.FlashCard_container}>
             <div className={cls.FlashCard} onClick={handleOnClick}>
-                <div
-                    className={cls.closeBtn_container}
-                    onClick={(e: React.MouseEvent) => onCloseCard?.(e, cardId)}
-                >
+                <div className={cls.closeBtn_container}>
                     <Button
+                        onClick={(e: React.MouseEvent) =>
+                            onCloseCard?.(e, cardId)
+                        }
                         className={classNames(cls.closeBtn, {}, [])}
                         size={SizeButton.S}
                     >

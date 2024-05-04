@@ -2,80 +2,35 @@
   "sets": [
     {
       "id": "1",
-      "title": "animals",
-      "cards": [
-        {
-          "id": "0",
-          "term": "elephant",
-          "definition": "слон"
-        },
-        {
-          "id": "1",
-          "term": "hedgehog",
-          "definition": "еж"
-        },
-        {
-          "id": "2",
-          "term": "wolf",
-          "definition": "волк"
-        },
-        {
-          "id": "3",
-          "term": "cat",
-          "definition": "кошка"
-        }
-      ]
+      "title": "animals"
     },
     {
       "id": "3",
-      "title": "nature",
-      "cards": [
-        {
-          "id": "0",
-          "term": "tree",
-          "definition": "дерево"
-        },
-        {
-          "id": "1",
-          "term": "cloud",
-          "definition": "облако"
-        },
-        {
-          "id": "2",
-          "term": "grass",
-          "definition": "трава"
-        },
-        {
-          "id": "3",
-          "term": "forest",
-          "definition": "лес"
-        }
-      ]
+      "title": "nature"
     },
     {
-      "id": "bc2628bc-ae68-470e-830e-ea6e67622f21",
-      "title": "delete me",
-      "cards": []
+      "id": "d8439df4-5d95-46c2-94ac-736ecf79afc5",
+      "title": "TT Bistro Menu"
+    }
+  ],
+  "cards": [
+    {
+      "id": "7dd4a73a-0ef7-47dc-8304-f019a11c9474",
+      "term": "Dog",
+      "definition": "Собака",
+      "setId": "1"
     },
     {
-      "id": "9c11ca4d-46ab-4693-9d01-d39ad6827232",
-      "title": "delete me 2",
-      "cards": []
+      "id": "6616795c-036f-4d3a-b5b5-8dea3a238733",
+      "term": "Cat",
+      "definition": "Кошка",
+      "setId": "1"
     },
     {
-      "id": "f92ea5ff-9d9c-4116-9a54-f149391faf31",
-      "title": "delete me",
-      "cards": []
-    },
-    {
-      "id": "83f30b46-0b18-4412-b96f-6a9aed882767",
-      "title": "deleto",
-      "cards": []
-    },
-    {
-      "id": "2c936a20-03ce-43b3-ae92-226929bcee8f",
-      "title": "editme",
-      "cards": []
+      "id": "3ce34625-08f3-4948-a3dd-3bc290c22d62",
+      "term": "tree",
+      "definition": "дерево",
+      "setId": "3"
     }
   ]
 }

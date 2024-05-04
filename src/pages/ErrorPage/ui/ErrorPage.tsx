@@ -5,7 +5,7 @@ export const ErrorPage = () => {
     const error = useRouteError();
     console.error(error);
 
-    let errorMessage: string = "";
+    let errorMessage = "";
     if (isRouteErrorResponse(error)) {
         errorMessage = error.statusText;
     }

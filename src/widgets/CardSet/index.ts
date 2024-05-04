@@ -1,1 +1,1 @@
-export { CardSet } from "./ui/CardSet";
+export { AllSetOfCards } from "./ui/AllSetOfCards";

@@ -1,30 +1,54 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Set } from "src/entities/Flashcard";
-import { CreateCard } from "src/features/CreateSetCard";
-import { getSet } from "src/shared/lib";
-import { Modal } from "src/shared/ui";
-import { CardSet } from "src/widgets/CardSet";
+import { addSet, classNames, deleteSet, getSet } from "src/shared/lib";
+import { Input } from "src/shared/ui";
+import { AllSetOfCards } from "src/widgets/CardSet";
+import { v4 as uuidv4 } from "uuid";
+import cls from "./MainPage.module.scss";
 
 export const MainPage = () => {
-    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+    const title = useRef("");
     const [cardSet, setCardSet] = useState<Set[]>([]);
 
-    const handleClose = () => {
-        setIsModalOpen((prev) => !prev);
-    };
-
     useEffect(() => {
-        getSet().then((cards: any) => {
-            setCardSet(cards);
+        getSet().then((cards: Set[] | undefined) => {
+            if (cards) {
+                setCardSet(cards);
+            }
         });
     }, []);
 
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        title.current = e.currentTarget.value;
+    };
+
+    const handleClick = async () => {
+        if (title.current) {
+            const set = { id: uuidv4(), title: title.current };
+            const res = await addSet(set);
+            if (res) {
+                setCardSet([...cardSet, res.data]);
+            }
+            title.current = "";
+        }
+    };
+
+    const onCloseCard = async (e: React.MouseEvent, id: string) => {
+        e.preventDefault();
+        try {
+            await deleteSet(id);
+            setCardSet([...cardSet.filter((card) => id !== card.id)]);
+        } catch (err) {
+            throw new Error("wrong card ID");
+        }
+    };
+
     return (
         <div className="main-page">
-            <Modal isOpen={isModalOpen} handleClose={handleClose}>
-                <CreateCard onClose={handleClose} />
-            </Modal>
-            <CardSet handleClose={handleClose} cardSet={cardSet} />
+            <div className={classNames(cls.input_layout, {}, [])}>
+                <Input onClick={handleClick} onChange={handleChange} />
+            </div>
+            <AllSetOfCards sets={cardSet} onCloseCard={onCloseCard} />
         </div>
     );
 };

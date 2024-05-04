@@ -1,2 +1,9 @@
 export { classNames } from "./classNames/classNames";
-export { addSet, deleteSet, getSet, getSetCards } from "./db/actions";
+export {
+    addCard,
+    addSet,
+    deleteCard,
+    deleteSet,
+    getCards,
+    getSet,
+} from "./db/actions";

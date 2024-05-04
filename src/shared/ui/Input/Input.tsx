@@ -1,27 +1,34 @@
-import { FC, InputHTMLAttributes, useRef } from "react";
+import { FC, InputHTMLAttributes } from "react";
 import { classNames } from "src/shared/lib";
 import { Button, SizeButton } from "../Button/Button";
 import cls from "./Input.module.scss";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-    className: string;
+    className?: string;
     onClick: () => void;
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 export const Input: FC<InputProps> = ({
     className,
     onClick,
+    onChange,
     ...otherProps
 }) => {
-    const title = useRef<string>("");
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        title.current = e.currentTarget.value;
-    };
-
     return (
-        <div className={classNames(cls.input_container, {}, [className])}>
+        <div
+            className={classNames(cls.input_container, {}, [
+                className as string,
+            ])}
+        >
             <input
-                className={classNames(cls.Input, {}, [className])}
-                onChange={handleChange}
+                onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
+                    if (e.key === "Enter") {
+                        e.currentTarget.value = "";
+                        onClick();
+                    }
+                }}
+                className={classNames(cls.Input, {}, [className as string])}
+                onChange={onChange}
                 {...otherProps}
             />
             <Button size={SizeButton.M} onClick={onClick}>
