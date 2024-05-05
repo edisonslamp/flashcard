@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Set } from "src/entities/Flashcard";
 import { addSet, classNames, deleteSet, getSet } from "src/shared/lib";
 import { Input } from "src/shared/ui";
-import { AllSetOfCards } from "src/widgets/CardSet";
+import { SetOfCards } from "src/widgets/SetOfCards";
 import { v4 as uuidv4 } from "uuid";
 import cls from "./MainPage.module.scss";
 
@@ -48,7 +48,7 @@ export const MainPage = () => {
             <div className={classNames(cls.input_layout, {}, [])}>
                 <Input onClick={handleClick} onChange={handleChange} />
             </div>
-            <AllSetOfCards sets={cardSet} onCloseCard={onCloseCard} />
+            <SetOfCards sets={cardSet} onCloseCard={onCloseCard} />
         </div>
     );
 };

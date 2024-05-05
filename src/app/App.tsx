@@ -1,5 +1,5 @@
 import { createContext, Suspense } from "react";
-import { Navbar } from "src/widgets";
+import { Navbar } from "src/widgets/Navbar";
 import AppRouter from "./providers/AppRouter/ui/AppRouter";
 
 export enum Themes {

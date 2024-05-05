@@ -1,23 +1,20 @@
 import React, { FC } from "react";
 import { Link } from "react-router-dom";
 import { FlashCard, Set } from "src/entities/Flashcard";
-import cls from "./AllSetOfCards.module.scss";
+import cls from "./SetOfCards.module.scss";
 
-interface AllSetOfCardsProps {
+interface SetOfCardsProps {
     sets: Set[];
     onCloseCard?: (e: React.MouseEvent, id: string) => void;
 }
 
-export const AllSetOfCards: FC<AllSetOfCardsProps> = ({
-    sets,
-    onCloseCard,
-}) => {
+export const SetOfCards: FC<SetOfCardsProps> = ({ sets, onCloseCard }) => {
     return (
         <div className="card-set">
             <div className={cls.cardLayout}>
                 <div className={cls.createSetBtn}></div>
 
-                <div className={cls.AllSetOfCardsList}>
+                <div className={cls.SetOfCardsList}>
                     {sets ? (
                         <ul>
                             {sets?.map((item, index) => (
