@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from "react";
 import { classNames } from "src/shared/lib";
 import { Button, SizeButton } from "src/shared/ui";
 import { Card } from "../model/types/Card";
-import cls from "./FlashCard.module.scss";
+import cls from "./Flashcard.module.scss";
 
 interface FlashCardProps {
     className?: string;
