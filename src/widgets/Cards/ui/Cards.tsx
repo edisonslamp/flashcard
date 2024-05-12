@@ -1,7 +1,13 @@
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Card, FlashCard } from "src/entities/Flashcard";
-import { addCard, deleteCard, getCards } from "src/shared/lib";
+import {
+    addElement,
+    deleteCardElement,
+    getAllElements,
+    Key,
+    Store,
+} from "src/shared/lib";
 import { Button, Modal, ModalForm, SizeButton } from "src/shared/ui";
 import { v4 as uuidv4 } from "uuid";
 import cls from "./Cards.module.scss";
@@ -18,14 +24,10 @@ export const Cards = () => {
     const { id: setId } = useParams();
 
     useEffect(() => {
-        const fetchCards = async (id: string) => {
-            const cards = await getCards(id);
-            if (cards) {
-                setCards(cards);
-            }
-        };
         if (setId) {
-            fetchCards(setId);
+            getAllElements<Card>(Store.CARDS, Key.READONLY, {
+                setId,
+            }).then(setCards);
         }
     }, [setId]);
 
@@ -35,10 +37,12 @@ export const Cards = () => {
             const card: Card = {
                 ...newCard.current,
                 id: uuidv4(),
+
                 setId,
             };
             setCards([...cards, card]);
-            await addCard(card);
+
+            addElement(Store.CARDS, Key.READWRITE, card);
         }
 
         setIsModalOpened(false);
@@ -64,7 +68,7 @@ export const Cards = () => {
     const onCloseCard = async (e: React.MouseEvent, id: string) => {
         e.preventDefault();
         try {
-            await deleteCard(id);
+            deleteCardElement(Store.CARDS, Key.READWRITE, id);
             setCards([...cards.filter((card) => id !== card.id)]);
         } catch (err) {
             throw new Error("wrong card ID");

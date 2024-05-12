@@ -1,6 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { Set } from "src/entities/Flashcard";
-import { addSet, classNames, deleteSet, getSet } from "src/shared/lib";
+import { classNames } from "src/shared/lib";
+import {
+    addElement,
+    deleteSetElement,
+    getAllElements,
+    Key,
+    Store,
+} from "src/shared/lib/db/actions";
 import { Input } from "src/shared/ui";
 import { SetOfCards } from "src/widgets/SetOfCards";
 import { v4 as uuidv4 } from "uuid";
@@ -11,11 +18,7 @@ export const MainPage = () => {
     const [cardSet, setCardSet] = useState<Set[]>([]);
 
     useEffect(() => {
-        getSet().then((cards: Set[] | undefined) => {
-            if (cards) {
-                setCardSet(cards);
-            }
-        });
+        getAllElements<Set>(Store.SETS, Key.READONLY).then(setCardSet);
     }, []);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,11 +27,11 @@ export const MainPage = () => {
 
     const handleClick = async () => {
         if (title.current) {
-            const set = { id: uuidv4(), title: title.current };
-            const res = await addSet(set);
-            if (res) {
-                setCardSet([...cardSet, res.data]);
-            }
+            const newSet: Set = { setId: uuidv4(), title: title.current };
+
+            addElement(Store.SETS, Key.READWRITE, newSet);
+            setCardSet([...cardSet, newSet]);
+
             title.current = "";
         }
     };
@@ -36,8 +39,8 @@ export const MainPage = () => {
     const onCloseCard = async (e: React.MouseEvent, id: string) => {
         e.preventDefault();
         try {
-            await deleteSet(id);
-            setCardSet([...cardSet.filter((card) => id !== card.id)]);
+            deleteSetElement(Store.SETS, Key.READWRITE, id);
+            setCardSet([...cardSet.filter((card) => id !== card.setId)]);
         } catch (err) {
             throw new Error("wrong card ID");
         }

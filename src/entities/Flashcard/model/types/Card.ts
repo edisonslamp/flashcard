@@ -7,7 +7,7 @@ export type Card = {
 
 // change the type name
 export type Set = {
-    id: string;
+    setId: string;
     title: string;
     cards?: Card[];
 };

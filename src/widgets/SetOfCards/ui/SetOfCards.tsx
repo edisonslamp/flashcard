@@ -20,7 +20,7 @@ export const SetOfCards: FC<SetOfCardsProps> = ({ sets, onCloseCard }) => {
                             {sets?.map((item, index) => (
                                 <li key={index}>
                                     <Link
-                                        to={`/set/${item.id}`}
+                                        to={`/set/${item.setId}`}
                                         style={{
                                             display: "contents",
                                             textDecoration: "none",
@@ -29,11 +29,11 @@ export const SetOfCards: FC<SetOfCardsProps> = ({ sets, onCloseCard }) => {
                                     >
                                         <FlashCard
                                             term={item.title}
-                                            id={item.id}
+                                            id={item.setId}
                                             onCloseCard={(
                                                 e: React.MouseEvent,
                                             ) => {
-                                                onCloseCard?.(e, item.id);
+                                                onCloseCard?.(e, item.setId);
                                             }}
                                         />
                                     </Link>

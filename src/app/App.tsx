@@ -17,7 +17,6 @@ const ContextDefaultValues: ContextType = {
     theme: Themes.BLACK,
     num: 100,
 };
-
 export const ThemeContext = createContext<ContextType>(ContextDefaultValues);
 
 export const App = () => {

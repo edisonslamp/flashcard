@@ -1,9 +1,8 @@
 export { classNames } from "./classNames/classNames";
 export {
-    addCard,
-    addSet,
-    deleteCard,
-    deleteSet,
-    getCards,
-    getSet,
+    Key,
+    Store,
+    addElement,
+    deleteCardElement,
+    getAllElements,
 } from "./db/actions";
