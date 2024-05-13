@@ -1,6 +1,5 @@
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
-import vercel from "vite-plugin-vercel";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -8,7 +7,6 @@ export default defineConfig({
         react({
             include: "**/*.tsx",
         }),
-        vercel(),
     ],
     resolve: {
         extensions: [".js", ".jsx", ".ts", ".tsx", ".scss", ".css"],
@@ -19,6 +17,5 @@ export default defineConfig({
     server: {
         port: 3000,
     },
-    base: "http://localhost:3000/",
-    appType: "spa",
+    // base: "http://localhost:3000/",
 });
