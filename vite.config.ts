@@ -10,7 +10,6 @@ export default defineConfig({
         }),
         vercel(),
     ],
-    vercel: {},
     resolve: {
         extensions: [".js", ".jsx", ".ts", ".tsx", ".scss", ".css"],
         alias: {
