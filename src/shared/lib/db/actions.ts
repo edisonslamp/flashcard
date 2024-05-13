@@ -102,7 +102,6 @@ export const deleteSetElement = (store: Store, key: Key, id: string) => {
             const cursor = cardRequest.result;
             if (cursor) {
                 if (cursor.value.setId === id) {
-                    console.log(cursor.value);
                     cardObjectStore.delete(cursor.value.id);
                 }
                 cursor.continue();
