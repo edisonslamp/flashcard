@@ -6,7 +6,7 @@ Click [here](https://flashcard-beige.vercel.app/) and try it yourself!
 
 ## Usage
 
--   Create a deck by clicking "Create" button.
+-   Create a deck of cards with common subject by clicking "Create" button.
 -   Create a card of yours by clicking "Create card" button.
 -   Set a term and definition which you'd like to memorize.
     > **Note:** The definition will appear only after you click on the card in order to memorize a related term and vice versa.
