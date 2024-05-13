@@ -18,5 +18,5 @@ export default defineConfig({
         port: 3000,
     },
     base: "http://localhost:3000/",
-    // appType: "spa",
+    appType: "spa",
 });
