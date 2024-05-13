@@ -1,27 +1,18 @@
-# React + TypeScript + Vite
+# Flashcard App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a simple web application that helps you to memorize any information by using [flashcard technique](https://en.wikipedia.org/wiki/Flashcard#:~:text=It%20is%20a%20simple%20implementation,solution%20written%20on%20a%20flashcard.).
 
-Currently, two official plugins are available:
+Click [here](https://flashcard-beige.vercel.app/) and try it yourself!
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Usage
 
-## Expanding the ESLint configuration
+-   Create a deck by clicking "Create" button.
+-   Create a card of yours by clicking "Create card" button.
+-   Set a term and definition which you'd like to memorize.
+    > **Note:** The definition will appear only after you click on the card in order to memorize a related term and vice versa.
+-   Enjoy the app:)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Technologies
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+The app has been created with Vite, React, SCSS Modules and Typescript.
+In order to persist a data the app uses IndexedDB database under the hood.
